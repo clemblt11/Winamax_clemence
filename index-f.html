@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clémence Boulet — Graphiste 2D/3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0C;
+    --bg-raise:#131316;
+    --panel:#1B1B20;
+    --panel-2:#212127;
+    --brand:#B20E10;
+    --brand-2:#FF3B30;
+    --white:#F2F1EE;
+    --muted:rgba(242,241,238,0.60);
+    --muted-2:rgba(242,241,238,0.42);
+    --line:rgba(242,241,238,0.14);
+    --line-soft:rgba(242,241,238,0.08);
+    --red:#FF5A4D;
+    --felt:#0E3D2C;
+    --gold:#D9A441;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  h1,h2,h3{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0;
+    line-height:1.04;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* background texture: subtle diagonal felt weave + top glow */
+  body{
+    background-repeat:no-repeat;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:60;
+    background:rgba(11,10,9,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-mark{ font-family:'Poppins',sans-serif; font-weight:800; font-size:17px; letter-spacing:0.01em; }
+  .nav-left{ display:flex; align-items:center; gap:14px; }
+  .site-back{
+    display:none;
+    align-items:center; gap:6px;
+    font-size:13px; font-weight:600;
+    color:var(--muted);
+    text-decoration:none;
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:6px 12px 6px 10px;
+    border-radius:999px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .site-back:hover{ border-color:rgba(255,59,48,0.5); color:var(--white); }
+  .site-back.show{ display:inline-flex; }
+  @media (max-width:560px){ .site-back span.txt{display:none;} }
+  .nav-mark span{color:var(--brand);}
+  .status-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:7px 13px 7px 9px;
+    border-radius:999px;
+    font-size:12.5px; font-weight:600;
+    color:var(--muted);
+  }
+  .status-chip .dot{ width:7px;height:7px;border-radius:50%; background:var(--brand); box-shadow:0 0 0 3px rgba(178,14,16,0.24); }
+  @media (max-width:560px){ .status-chip span.txt{display:none;} }
+
+  /* Compact nav on the Portfolio 3D page: keep just the back link, free up room for the projects */
+  body.compact-nav .nav{ background:transparent; backdrop-filter:none; border-bottom:none; }
+  body.compact-nav .nav .wrap{ height:auto; padding:14px 20px; justify-content:flex-start; }
+  body.compact-nav .nav-mark, body.compact-nav .status-chip{ display:none; }
+  body.compact-nav .site-back{ padding:6px 14px 6px 10px; font-size:12px; background:var(--panel); border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,0.35); }
+  /* Real "back to game" bar shown above the portfolio page — shrink it to just the button */
+  body.compact-nav .page-bar{ margin-bottom:10px; }
+  body.compact-nav .page-index{ display:none; }
+  body.compact-nav .back-btn{ padding:6px 13px; font-size:12.5px; }
+  body.compact-nav #page-portfolio{ padding-top:14px; }
+
+  /* ================= HOME ================= */
+  #home{ padding:64px 0 40px; transition:opacity .35s ease; }
+  #home.hide{ display:none; }
+
+  .home-head{ text-align:center; max-width:640px; margin:0 auto 8px; }
+  .home-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--brand-2); margin-bottom:18px;
+  }
+  .home-eyebrow::before, .home-eyebrow::after{ content:"♠"; opacity:0.6; }
+  .home-head h1{
+    font-size:clamp(38px,6.4vw,64px);
+    color:var(--white);
+  }
+  .home-head h1 em{ font-style:normal; color:var(--brand); }
+  .home-head p{
+    margin-top:18px;
+    font-size:16px;
+    color:var(--muted);
+    max-width:50ch;
+    margin-left:auto; margin-right:auto;
+  }
+  .home-instruction{
+    text-align:center;
+    margin:44px 0 28px;
+    font-size:13.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--muted-2);
+  }
+
+  /* ---------- Deck grid ---------- */
+  .deck{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:980px;
+    margin:0 auto 40px;
+  }
+  @media (max-width:820px){ .deck{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .deck{grid-template-columns:1fr; max-width:340px;} }
+
+  .deck-card{
+    position:relative;
+    aspect-ratio:5/6.4;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    color:var(--white);
+    text-align:left;
+    display:block;
+    perspective:1400px;
+    transition:transform .22s cubic-bezier(.2,.7,.2,1);
+    opacity:0;
+    transform:translateY(16px);
+    animation:cardIn .5s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:calc(var(--i) * 70ms);
+  }
+  @keyframes cardIn{ to{opacity:1; transform:translateY(0);} }
+
+  .deck-card:hover, .deck-card:focus-visible{
+    transform:translateY(-8px) rotate(var(--tilt,0deg));
+  }
+  .deck-card:nth-child(odd){ --tilt:-1.2deg; }
+  .deck-card:nth-child(even){ --tilt:1.2deg; }
+
+  /* card-flip: the real "turn the card over" mechanic */
+  .card-flip{
+    position:absolute; inset:0;
+    transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.5,0,.2,1), box-shadow .22s ease;
+  }
+  .deck-card:hover .card-flip, .deck-card:focus-visible .card-flip{
+    box-shadow:0 22px 40px -18px rgba(255,59,48,0.35);
+  }
+  .deck-card.is-flipping .card-flip{ transform:rotateY(180deg); }
+
+  .card-face{
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border-radius:14px;
+    border:1px solid var(--line);
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+    transition:border-color .22s ease;
+  }
+  .card-face-front{ background:var(--white); color:var(--bg); border-color:rgba(10,10,12,0.14); }
+  .card-face-front .deck-sub{ color:rgba(10,10,12,0.62); }
+  .deck-card.suit-white .card-face-front .deck-corner{ color:var(--bg); }
+  .deck-card.suit-white .card-face-front .deck-center{ color:var(--bg); }
+  .deck-card:not(.joker):hover .card-face-front,
+  .deck-card:not(.joker):focus-visible .card-face-front{
+    border-color:rgba(255,59,48,0.55);
+  }
+  /* foil shine sweep on hover, for extra "jeu" feel */
+  .card-face-front::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.14) 50%, transparent 60%);
+    transform:translateX(-130%);
+    transition:transform .6s ease;
+    pointer-events:none;
+  }
+  .deck-card:hover .card-face-front::after, .deck-card:focus-visible .card-face-front::after{
+    transform:translateX(130%);
+  }
+
+  .card-face-back{
+    transform:rotateY(180deg);
+    background:repeating-linear-gradient(45deg, rgba(178,14,16,0.9) 0 8px, #170406 8px 16px);
+    border-color:rgba(178,14,16,0.5);
+    align-items:center;
+    justify-content:center;
+  }
+  .back-mark{
+    font-family:'Poppins',sans-serif;
+    font-weight:900;
+    font-size:32px;
+    letter-spacing:-0.02em;
+    color:var(--white);
+    opacity:0.92;
+  }
+  .back-mark-sm{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.01em;
+    opacity:0.95;
+    text-align:center;
+  }
+
+  .deck-corner{
+    display:flex; flex-direction:column; align-items:center;
+    line-height:1;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:15px;
+  }
+  .deck-corner .suit{ font-size:16px; margin-top:2px; }
+  .deck-card.suit-red .deck-corner{ color:var(--red); }
+  .deck-card.suit-white .deck-corner{ color:var(--white); }
+
+  .deck-corner.top{ align-self:flex-start; }
+  .deck-corner.bottom{ align-self:flex-end; transform:rotate(180deg); }
+
+  .deck-center{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:46px;
+    opacity:0.12;
+    pointer-events:none;
+  }
+  .deck-card.suit-red .deck-center{ color:var(--red); }
+  .deck-card.suit-white .deck-center{ color:var(--white); }
+
+  .deck-text{ position:relative; z-index:1; }
+  .deck-label{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:17px;
+    margin-bottom:4px;
+  }
+  .deck-sub{ font-size:12.5px; color:var(--muted); }
+
+  .deck-card.joker .card-face-front{
+    background:linear-gradient(155deg, var(--brand-2), #5C0A0B);
+    border-color:transparent;
+    color:#1B0506;
+  }
+  .deck-card.joker .deck-corner{ color:#1B0506; }
+  .deck-card.joker .deck-center{ color:#1B0506; opacity:0.16; }
+  .deck-card.joker .deck-sub{ color:rgba(27,5,6,0.7); }
+  .deck-card.joker:hover .card-flip, .deck-card.joker:focus-visible .card-flip{
+    box-shadow:0 22px 44px -16px rgba(255,59,48,0.6);
+  }
+
+  /* Portfolio 3D card: same white card, red accent like the other suits */
+  .deck-card.holo .card-face-front{
+    background:var(--white);
+    border-color:rgba(10,10,12,0.14);
+  }
+  .deck-card.holo .deck-corner{ color:var(--red); }
+  .deck-card.holo .deck-center{ color:var(--red); opacity:0.14; font-size:38px; }
+  .deck-card.holo .deck-sub{ color:var(--red); }
+  .deck-card.holo:hover .card-face-front, .deck-card.holo:focus-visible .card-face-front{
+    border-color:var(--brand-2);
+  }
+  .deck-card.holo .card-face-back{
+    background:linear-gradient(135deg, var(--brand) 0%, #170406 100%);
+  }
+
+  /* ---------- Hero (repris de l'ancien site) ---------- */
+  .home-hero{
+    padding-top:4px; margin-bottom:8px;
+    position:relative;
+  }
+  .home-hero::before{
+    content:'';
+    position:absolute;
+    top:-64px; left:-50vw; right:-50vw; bottom:-90px;
+    width:200vw;
+    z-index:-1;
+    pointer-events:none;
+    background-image:
+      radial-gradient(900px 520px at 68% 8%, rgba(178,14,16,0.30), transparent 62%),
+      radial-gradient(820px 700px at 78% 78%, rgba(14,61,44,0.78), transparent 68%),
+      radial-gradient(700px 500px at 20% 30%, rgba(178,14,16,0.20), transparent 58%);
+    background-repeat:no-repeat;
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+    mask-image:linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center;
+    text-align:left;
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:9px;
+    background:rgba(178,14,16,0.12);
+    border:1px solid rgba(255,59,48,0.5);
+    color:var(--brand-2);
+    font-size:.78rem; font-weight:700;
+    padding:8px 16px; border-radius:100px; letter-spacing:0.01em;
+    margin-bottom:26px;
+  }
+  .hero-badge .dot{ width:7px;height:7px;border-radius:50%;background:var(--brand-2); box-shadow:0 0 0 3px rgba(178,14,16,0.25); }
+  .hero-title{
+    font-family:'Poppins',sans-serif; font-weight:800;
+    font-size:clamp(2.6rem,6vw,4.4rem);
+    line-height:0.98;
+    color:var(--white);
+    letter-spacing:-0.01em;
+  }
+  .hero-title span{ color:var(--brand); display:block; }
+  .hero-role{
+    font-size:1.15rem; font-weight:700; color:var(--gold);
+    margin-top:20px; letter-spacing:0.02em;
+  }
+  .hero-text{
+    margin-top:20px; font-size:1.02rem; line-height:1.65;
+    color:var(--muted); max-width:52ch;
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:.92rem;
+    text-decoration:none; padding:14px 24px; border-radius:100px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease;
+    cursor:pointer; border:none;
+  }
+  .btn-primary{ background:var(--brand); color:var(--white); }
+  .btn-primary:hover{ background:var(--brand-2); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--white); border:1px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--brand-2); transform:translateY(-2px); }
+
+  .hero-art{ position:relative; height:380px; }
+  .card-shape{
+    position:absolute; width:140px; height:192px; border-radius:16px;
+    background:var(--white);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
+    overflow:hidden;
+  }
+  .card-shape img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card-shape img.zoom-sm{ transform:scale(1.12); }
+  .card-shape img.zoom-md{ transform:scale(1.3); }
+  .card-shape img.zoom-lg{ transform:scale(1.12); }
+  .card-shape.c1{ top:6%; left:4%; transform:rotate(-14deg); z-index:2; }
+  .card-shape.c2{ top:20%; left:32%; transform:rotate(6deg); z-index:3; }
+  .card-shape.c3{ top:2%; left:56%; transform:rotate(20deg); z-index:1; }
+  .chip-shape{
+    position:absolute; bottom:4%; left:18%; width:120px; height:120px; border-radius:50%;
+    background:repeating-conic-gradient(var(--brand) 0deg 30deg, var(--bg) 30deg 60deg);
+    box-shadow:0 24px 50px -12px rgba(178,14,16,0.5);
+    display:flex; align-items:center; justify-content:center; z-index:4;
+  }
+  .chip-shape::after{
+    content:''; width:66px; height:66px; border-radius:50%;
+    background:var(--felt); border:2px dashed rgba(242,241,238,0.5);
+  }
+  .hero-float-1{ animation:heroFloat1 7s ease-in-out infinite; }
+  .hero-float-2{ animation:heroFloat2 8s ease-in-out infinite; }
+  .hero-float-3{ animation:heroFloat3 6.5s ease-in-out infinite; }
+  @keyframes heroFloat1{ 0%,100%{transform:rotate(-14deg) translateY(0);} 50%{transform:rotate(-9deg) translateY(-14px);} }
+  @keyframes heroFloat2{ 0%,100%{transform:rotate(6deg) translateY(0);} 50%{transform:rotate(11deg) translateY(-10px);} }
+  @keyframes heroFloat3{ 0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-16px) rotate(6deg);} }
+  @media (prefers-reduced-motion: reduce){ .hero-float-1,.hero-float-2,.hero-float-3{animation:none;} }
+
+  @media (max-width:820px){
+    .hero-grid{ grid-template-columns:1fr; text-align:center; }
+    .hero-actions{ justify-content:center; }
+    .hero-art{ height:260px; margin-top:10px; }
+    .hero-text{ margin-left:auto; margin-right:auto; }
+  }
+
+  .home-photo-strip{
+    display:flex; justify-content:center; margin-top:8px;
+  }
+  .home-photo{
+    width:52px; height:52px; border-radius:50%;
+    overflow:hidden; border:2px solid var(--brand);
+  }
+  .home-photo img{ width:100%; height:100%; object-fit:cover; }
+
+  .ticker{
+    margin-top:36px;
+    border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .ticker-track{ display:inline-flex; padding:12px 0; animation:scroll 24s linear infinite; }
+  .ticker-track span{ padding:0 24px; font-size:12.5px; font-weight:700; letter-spacing:0.03em; color:var(--muted); }
+  .ticker-track span b{ color:var(--brand); }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ================= PAGES ================= */
+  #pageview{ display:none; }
+  #pageview.show{ display:block; }
+
+  .page{ display:none; padding:44px 0 90px; }
+  .page.active{ display:block; opacity:0; animation:pageIn .45s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes pageIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .page-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; margin-bottom:36px;
+  }
+  .back-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:transparent; border:1px solid var(--line);
+    color:var(--white); padding:9px 16px;
+    border-radius:999px; font-size:13.5px; font-weight:700;
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
+  }
+  .back-btn:hover{ border-color:var(--brand); background:rgba(178,14,16,0.10); }
+  .page-index{ font-size:12.5px; font-weight:700; color:var(--muted-2); letter-spacing:0.05em; text-transform:uppercase; }
+
+  .portfolio-embed{
+    width:100%; margin-top:8px;
+    border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
+    background:#000;
+  }
+  .portfolio-embed iframe{ width:100%; height:90vh; border:0; display:block; }
+  @media (max-width:640px){ .portfolio-embed iframe{ height:80vh; } }
+  #page-portfolio{ padding-bottom:0; }
+  body.hide-footer footer{ display:none; }
+
+  .page-title{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:12px;
+    flex-wrap:wrap;
+  }
+  .page-title h2{ font-size:clamp(32px,5vw,48px); }
+  .page-title .suit-badge{
+    font-size:22px; color:var(--brand);
+    font-family:'Poppins',sans-serif; font-weight:800;
+  }
+  .page-lede{ font-size:15px; color:var(--muted); max-width:60ch; margin-bottom:44px; }
+
+  /* --- Profil page --- */
+  .profil-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;
+  }
+  .profil-lede{
+    font-size:clamp(20px,2.4vw,25px); line-height:1.34; font-weight:700; color:var(--white);
+  }
+  .profil-lede .accent{ color:var(--brand); }
+  .profil-body{ margin-top:18px; font-size:15px; color:var(--muted); max-width:58ch; }
+  .fact-list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+  .fact-list li{ display:flex; justify-content:space-between; gap:16px; padding:15px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .fact-list li span:first-child{ color:var(--muted-2); font-weight:600; }
+  .fact-list li span:last-child{ font-weight:700; text-align:right; }
+  .profil-photo{
+    border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    aspect-ratio:5/6; margin-top:8px;
+  }
+  .profil-photo img{ width:100%; height:100%; object-fit:cover; }
+  @media (max-width:820px){ .profil-grid{grid-template-columns:1fr;} .profil-photo{max-width:260px;} }
+
+  /* --- Compétences page --- */
+  .hand{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .skill-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:20px 18px 22px; position:relative;
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .skill-card:hover{ transform:translateY(-5px); border-color:rgba(255,59,48,0.4); }
+  .skill-card .suit{ position:absolute; top:14px; right:16px; font-size:19px; color:var(--brand); font-family:'Poppins',sans-serif; }
+  .skill-card h3{ font-family:'Inter',sans-serif; font-size:12.5px; font-weight:800; letter-spacing:0.03em; text-transform:uppercase; margin-bottom:14px; max-width:78%; }
+  .skill-card ul{ list-style:none; margin:0; padding:0; }
+  .skill-card li{ font-size:13.5px; padding:6px 0; border-top:1px dashed var(--line); color:var(--muted); }
+  .skill-card li:first-child{ border-top:none; }
+  @media (max-width:920px){ .hand{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .hand{grid-template-columns:1fr;} }
+
+  .softskills{ margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; }
+  .softskills span{ border:1px solid var(--line); background:var(--panel); padding:9px 15px; border-radius:999px; font-size:13px; font-weight:600; }
+
+  /* --- Expériences page --- */
+  .timeline{ border-top:1px solid var(--line); }
+  .tl-row{ display:grid; grid-template-columns:150px 1fr; gap:24px; padding:24px 0; border-bottom:1px solid var(--line); }
+  .tl-date{ font-family:'Poppins',sans-serif; font-weight:800; font-size:15px; color:var(--brand); padding-top:2px; }
+  .tl-body h3{ font-family:'Inter',sans-serif; font-size:16.5px; font-weight:800; margin-bottom:6px; }
+  .tl-body p{ margin:0; font-size:14px; color:var(--muted); max-width:60ch; }
+  .tl-tag{ display:inline-block; margin-top:10px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--brand-2); }
+  @media (max-width:640px){ .tl-row{grid-template-columns:1fr; gap:6px;} }
+
+  /* --- Formation page --- */
+  .edu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .edu-card{ border:1px solid var(--line); border-radius:10px; padding:22px; background:var(--panel); }
+  .edu-card .yr{ font-family:'Poppins',sans-serif; font-weight:800; font-size:14px; color:var(--brand-2); margin-bottom:10px; display:block; }
+  .edu-card h3{ font-family:'Inter',sans-serif; font-size:15px; font-weight:800; line-height:1.3; }
+  .edu-card p{ font-size:13px; color:var(--muted); margin-top:8px; }
+  @media (max-width:820px){ .edu-grid{grid-template-columns:1fr;} }
+
+  .langs{ margin-top:30px; display:flex; gap:28px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:26px; }
+  .lang-item{ min-width:160px; }
+  .lang-item b{ display:block; font-size:14px; margin-bottom:8px; }
+  .meter{ height:6px; border-radius:999px; background:var(--line); overflow:hidden; }
+  .meter i{ display:block; height:100%; background:var(--brand); border-radius:999px; }
+
+  /* --- Univers page --- */
+  .interest-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .interest-tile{ border:1px solid var(--line); border-radius:10px; padding:20px 14px; text-align:center; background:var(--panel); }
+  .interest-tile .ic{ font-size:24px; margin-bottom:10px; }
+  .interest-tile span{ font-size:12.5px; font-weight:600; color:var(--muted); }
+  .interest-tile.hi{ background:rgba(178,14,16,0.14); border-color:rgba(255,59,48,0.4); }
+  @media (max-width:700px){ .interest-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .why-row{ margin-top:46px; display:grid; grid-template-columns:1fr 1fr; gap:26px; padding-top:34px; border-top:1px solid var(--line); }
+  .why-row h3{ font-family:'Inter',sans-serif; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--brand-2); margin-bottom:10px; }
+  .why-row p{ font-size:14px; color:var(--muted); margin:0; max-width:52ch; }
+  @media (max-width:700px){ .why-row{grid-template-columns:1fr;} }
+
+  /* --- Contact page --- */
+  .contact-panel{
+    background:linear-gradient(155deg, var(--brand-2), #5C0A0B);
+    color:#1B0506; border-radius:16px; padding:52px;
+    display:grid; grid-template-columns:1.2fr 1fr; gap:36px;
+    position:relative; overflow:hidden;
+  }
+  .contact-panel::before{ content:""; position:absolute; right:-60px; top:-60px; width:240px; height:240px; border:1px solid rgba(27,5,6,0.22); border-radius:50%; }
+  .contact-panel h2{ font-size:clamp(32px,5vw,50px); color:#1B0506; }
+  .contact-panel .lede{ margin-top:14px; font-size:15px; color:rgba(27,5,6,0.78); max-width:44ch; }
+  .contact-list{ list-style:none; margin:24px 0 0; padding:0; }
+  .contact-list li{ padding:10px 0; border-top:1px solid rgba(27,5,6,0.18); }
+  .contact-list a{ text-decoration:none; color:#1B0506; font-size:15.5px; font-weight:800; }
+  .contact-list .lbl{ display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:rgba(27,5,6,0.6); margin-bottom:4px; }
+  .btn-dark{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:#1B0506; color:var(--brand-2);
+    padding:13px 22px; border-radius:3px; font-size:14px; font-weight:700;
+    text-decoration:none; margin-top:18px; border:none; cursor:pointer;
+  }
+  .btn-dark:hover{ background:#000; }
+  .contact-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+  .contact-actions .btn-dark, .contact-actions .btn-outline{ margin-top:18px; }
+  .btn-outline{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:transparent; color:var(--white);
+    padding:13px 22px; border-radius:3px; font-size:14px; font-weight:700;
+    text-decoration:none; border:1px solid var(--line); cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-outline:hover{ border-color:var(--brand-2); background:rgba(255,59,48,0.08); }
+  @media (max-width:820px){ .contact-panel{grid-template-columns:1fr; padding:32px 22px;} }
+
+  footer{ padding:30px 0 44px; text-align:center; font-size:12px; color:var(--muted-2); }
+
+  :focus-visible{ outline:2px solid var(--brand); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-left">
+      <a href="#" class="site-back" id="siteBack" aria-label="Retourner à la page précédente">← <span class="txt">Retour</span></a>
+      <div class="nav-mark">CLÉMENCE<span>.</span>BOULET</div>
+    </div>
+    <div class="status-chip"><span class="dot"></span><span class="txt">Diplômée · disponible immédiatement · temps plein</span></div>
+  </div>
+</nav>
+
+<main id="home">
+  <div class="wrap">
+    <section class="home-hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-title">Clémence<span>Boulet</span></h1>
+          <div class="hero-role">Graphiste 2D / 3D — VFX &amp; création d'univers visuels</div>
+          <p class="hero-text">Diplômée en effets visuels numériques, je conçois des images qui racontent quelque chose : environnements 3D, retouches, animations et déclinaisons graphiques. J'aime les univers ludiques, rythmés, un peu spectaculaires — exactement le genre de terrain de jeu que je cherche aujourd'hui.</p>
+          <div class="hero-actions">
+            <a href="#" class="btn btn-primary" onclick="showPage('portfolio', this); return false;">Voir mes projets</a>
+            <a href="#" class="btn btn-ghost" onclick="showPage('contact', this); return false;">Me contacter</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="card-shape c1 hero-float-1">
+            <img src="hero-card-ace.jpg" alt="As de trèfle">
+          </div>
+          <div class="card-shape c2 hero-float-2">
+            <img class="zoom-md" src="hero-card-king.jpg" alt="Roi de cœur">
+          </div>
+          <div class="card-shape c3 hero-float-1">
+            <img class="zoom-lg" src="hero-card-queen.png" alt="Dame de pique">
+          </div>
+          <div class="chip-shape hero-float-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="home-instruction">Choisissez une carte</p>
+
+    <div class="deck" id="deck">
+      <button class="deck-card suit-white" data-target="profil" style="--i:0" aria-label="Retourner la carte Profil">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">A<span class="suit">♠</span></span>
+            <span class="deck-center">♠</span>
+            <span class="deck-text">
+              <span class="deck-label">Profil</span>
+              <span class="deck-sub">Qui je suis</span>
+            </span>
+            <span class="deck-corner bottom">A<span class="suit">♠</span></span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+
+      <button class="deck-card holo" data-target="portfolio" style="--i:1" aria-label="Retourner la carte Portfolio 3D">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">3D<span class="suit">✦</span></span>
+            <span class="deck-center">✦</span>
+            <span class="deck-text">
+              <span class="deck-label">Portfolio 3D</span>
+              <span class="deck-sub">Voir le site complet</span>
+            </span>
+            <span class="deck-corner bottom">3D<span class="suit">✦</span></span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+
+      <button class="deck-card suit-white" data-target="competences" style="--i:2" aria-label="Retourner la carte Compétences">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">K<span class="suit">♣</span></span>
+            <span class="deck-center">♣</span>
+            <span class="deck-text">
+              <span class="deck-label">Compétences</span>
+              <span class="deck-sub">Logiciels &amp; outils</span>
+            </span>
+            <span class="deck-corner bottom">K<span class="suit">♣</span></span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+
+      <button class="deck-card suit-red" data-target="formation" style="--i:3" aria-label="Retourner la carte Formation">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">J<span class="suit">♥</span></span>
+            <span class="deck-center">♥</span>
+            <span class="deck-text">
+              <span class="deck-label">Formation</span>
+              <span class="deck-sub">Études &amp; langues</span>
+            </span>
+            <span class="deck-corner bottom">J<span class="suit">♥</span></span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+
+      <button class="deck-card suit-red" data-target="experiences" style="--i:4" aria-label="Retourner la carte Expériences">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">Q<span class="suit">♦</span></span>
+            <span class="deck-center">♦</span>
+            <span class="deck-text">
+              <span class="deck-label">Expériences</span>
+              <span class="deck-sub">Ce que j'ai fait</span>
+            </span>
+            <span class="deck-corner bottom">Q<span class="suit">♦</span></span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+
+      <button class="deck-card joker" data-target="contact" style="--i:5" aria-label="Retourner la carte Contact">
+        <span class="card-flip">
+          <span class="card-face card-face-front">
+            <span class="deck-corner top">JK</span>
+            <span class="deck-center">★</span>
+            <span class="deck-text">
+              <span class="deck-label">Contact</span>
+              <span class="deck-sub">On en parle ?</span>
+            </span>
+            <span class="deck-corner bottom">JK</span>
+          </span>
+          <span class="card-face card-face-back"><span class="back-mark">C·B</span></span>
+        </span>
+      </button>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>MOTION <b>DESIGN</b></span><span>MODÉLISATION <b>3D</b></span><span>IDENTITÉ <b>VISUELLE</b></span><span>MONTAGE <b>&amp; POST-PROD</b></span><span>COMMUNICATION <b>DIGITALE</b></span><span>MOTION <b>DESIGN</b></span><span>MODÉLISATION <b>3D</b></span><span>IDENTITÉ <b>VISUELLE</b></span><span>MONTAGE <b>&amp; POST-PROD</b></span><span>COMMUNICATION <b>DIGITALE</b></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="pageview">
+  <div class="wrap">
+    <div class="page-bar">
+      <button class="back-btn" onclick="showHome()">← Retour au jeu</button>
+      <span class="page-index" id="pageIndex">Carte 1 / 6</span>
+    </div>
+  </div>
+
+  <section class="page" id="page-profil">
+    <div class="wrap">
+      <div class="page-title"><span class="suit-badge">A♠</span><h2>Profil</h2></div>
+      <p class="page-lede">Qui je suis, et ce que je cherche aujourd'hui.</p>
+      <div class="profil-grid">
+        <div>
+          <p class="profil-lede">Je viens de valider mon titre de <span class="accent">Conceptrice-Technicienne des effets spéciaux numériques</span>, et je cherche maintenant un studio où poser mes valises à temps plein.</p>
+          <p class="profil-body">Formée à l'école VFX Workshop à Paris après une première année de Licence Cinéma Audiovisuel à la Sorbonne Nouvelle, j'ai appris à faire dialoguer la 2D et la 3D : composition, texturing, modélisation, montage. J'aime autant régler la lumière d'un rendu 3D que caler une animation After Effects au bon tempo. Ce qui me porte, c'est de mettre cette technique au service d'une identité graphique forte — et d'un univers qui a du caractère.</p>
+          <ul class="fact-list">
+            <li><span>Disponibilité</span><span>Temps plein, immédiate</span></li>
+            <li><span>Formation</span><span>VFX Workshop — Titre RNCP</span></li>
+            <li><span>Basée à</span><span>Paris 15e</span></li>
+            <li><span>Recherche</span><span>Graphisme 2D/3D, com. visuelle</span></li>
+            <li><span>Certification</span><span>PIX — 364 points</span></li>
+          </ul>
+        </div>
+        <div class="profil-photo"><img src="clemence-photo.jpg" alt="Portrait de Clémence Boulet" loading="lazy"></div>
+      </div>
+
+      <div class="why-row" style="margin-top:56px; padding-top:36px;">
+        <div>
+          <h3>Pourquoi un studio comme le vôtre</h3>
+          <p>Passionnée de jeux de cartes et de compétition, j'ai grandi avec la même logique que celle d'un studio créatif tourné vers le jeu : rythme, audace visuelle et sens du divertissement. Je veux mettre mes compétences 2D/3D au service d'une identité qui ne se prend pas trop au sérieux.</p>
+        </div>
+        <div>
+          <h3>Ce que j'apporte tout de suite</h3>
+          <p>Une double culture 2D/3D, une bonne dose d'autonomie acquise sur le terrain (animation de groupes, événementiel, tournages), et l'envie d'apprendre vite les codes d'une nouvelle marque.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:44px;">
+        <h3 style="font-family:'Inter',sans-serif; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--brand-2); margin-bottom:14px;">En dehors du travail</h3>
+        <p class="page-lede" style="margin-bottom:20px;">Le jeu, la scène et l'écran occupent une bonne partie de mon temps libre.</p>
+        <div class="interest-grid">
+          <div class="interest-tile hi"><div class="ic">🃏</div><span>Jeux de cartes</span></div>
+          <div class="interest-tile"><div class="ic">🎬</div><span>Cinéma</span></div>
+          <div class="interest-tile"><div class="ic">⛷️</div><span>Ski</span></div>
+          <div class="interest-tile"><div class="ic">🎾</div><span>Tennis</span></div>
+          <div class="interest-tile"><div class="ic">🏄</div><span>Paddle / surf</span></div>
+          <div class="interest-tile"><div class="ic">🎸</div><span>Guitare</span></div>
+          <div class="interest-tile"><div class="ic">🏛️</div><span>Musées</span></div>
+          <div class="interest-tile"><div class="ic">🌍</div><span>Voyages</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-portfolio">
+    <div class="portfolio-embed">
+      <iframe
+        src="portfolio-projets.html"
+        title="Mes projets — Clémence Boulet"
+        loading="lazy"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <section class="page" id="page-competences">
+    <div class="wrap">
+      <div class="page-title"><span class="suit-badge">K♣</span><h2>Compétences</h2></div>
+      <p class="page-lede">Quatre familles d'outils, une seule logique : passer du croquis à l'image finie sans perdre l'intention créative.</p>
+      <div class="hand">
+        <div class="skill-card">
+          <div class="suit">♦</div>
+          <h3>Logiciels 2D</h3>
+          <ul>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Premiere Pro</li>
+            <li>After Effects</li>
+            <li>DaVinci Resolve</li>
+            <li>Final Cut Pro</li>
+            <li>Nuke</li>
+            <li>Substance Painter</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="suit">♠</div>
+          <h3>Logiciels 3D</h3>
+          <ul>
+            <li>3ds Max (Forest Pack, RailClone)</li>
+            <li>Houdini</li>
+            <li>Blender</li>
+            <li>ZBrush</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="suit">♥</div>
+          <h3>Outils IA</h3>
+          <ul>
+            <li>Meshy</li>
+            <li>Rodin</li>
+            <li>Claude</li>
+            <li>Gemini</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="suit">♣</div>
+          <h3>Sur le terrain</h3>
+          <ul>
+            <li>Autonomie</li>
+            <li>Créativité</li>
+            <li>Travail en équipe</li>
+            <li>Gestion des délais</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-experiences">
+    <div class="wrap">
+      <div class="page-title"><span class="suit-badge">Q♦</span><h2>Expériences</h2></div>
+      <p class="page-lede">Du plateau de tournage à l'animation d'événements, des expériences qui m'ont appris à créer sous contrainte de temps et de public.</p>
+      <div class="timeline">
+        <div class="tl-row">
+          <div class="tl-date">DÉC. 2025</div>
+          <div class="tl-body">
+            <h3>Figuration et silhouette — NADEJDA</h3>
+            <p>Boxeuse dans le film <em>NADEJDA</em> de Natasha Mashkevich.</p>
+            <span class="tl-tag">Cinéma</span>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">2024 — 2026</div>
+          <div class="tl-body">
+            <h3>Animatrice — Maison Des Familles &amp; UCPA</h3>
+            <p>Animation en centre de loisirs et en séjour de vacances au ski. Gestion de groupe, organisation de jeux et d'ateliers.</p>
+            <span class="tl-tag">Animation</span>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">SEPT. 2024</div>
+          <div class="tl-body">
+            <h3>Volontaire aux Jeux Paralympiques — Paris</h3>
+            <p>Animation des festivités à la mairie du 15ᵉ arrondissement durant les Jeux Paralympiques de Paris.</p>
+            <span class="tl-tag">Événementiel</span>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">JUIL. 2024</div>
+          <div class="tl-body">
+            <h3>Stage communication — ESMT, Berlin</h3>
+            <p>Montage vidéo sur Premiere et animation sur After Effects. Tournage de vidéos et interviews au sein de l'université et dans la ville.</p>
+            <span class="tl-tag">Motion &amp; montage</span>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">2021 — 2023</div>
+          <div class="tl-body">
+            <h3>Stages cinéma — @ateliercinema.com</h3>
+            <p>Réalisation de courts-métrages, jeu d'acteur et montage.</p>
+            <span class="tl-tag">Réalisation</span>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-date">FÉV. 2020</div>
+          <div class="tl-body">
+            <h3>Stage d'observation — CGEV, Paris</h3>
+            <p>Compagnie Générale des Effets Visuels : agence de post-production spécialisée dans les VFX pour le cinéma et le streaming.</p>
+            <span class="tl-tag">VFX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-formation">
+    <div class="wrap">
+      <div class="page-title"><span class="suit-badge">J♥</span><h2>Formation</h2></div>
+      <p class="page-lede">Un parcours pensé pour croiser technique de l'image et culture audiovisuelle.</p>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <span class="yr">2023 — 2026</span>
+          <h3>VFX Workshop, Paris</h3>
+          <p>Titre RNCP — Conceptrice-Technicienne des effets spéciaux numériques.</p>
+        </div>
+        <div class="edu-card">
+          <span class="yr">2021 — 2023</span>
+          <h3>Licence Cinéma Audiovisuel (L1)</h3>
+          <p>Université Sorbonne Nouvelle Paris 3 — Mineure Arts et Médias.</p>
+        </div>
+        <div class="edu-card">
+          <span class="yr">2021 — 2023</span>
+          <h3>Baccalauréat, mention Bien</h3>
+          <p>Lycée Saint Sulpice, Paris — Spécialités Mathématiques &amp; Cinéma Audiovisuel. Diplôme du BAFA obtenu en février 2024.</p>
+        </div>
+      </div>
+      <div class="langs">
+        <div class="lang-item">
+          <b>Français — langue maternelle</b>
+          <div class="meter"><i style="width:100%"></i></div>
+        </div>
+        <div class="lang-item">
+          <b>Anglais — niveau B1</b>
+          <div class="meter"><i style="width:58%"></i></div>
+        </div>
+        <div class="lang-item">
+          <b>Espagnol — niveau A2</b>
+          <div class="meter"><i style="width:32%"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-contact">
+    <div class="wrap">
+      <div class="page-title"><span class="suit-badge">JK</span><h2>Contact</h2></div>
+      <p class="page-lede">Diplômée, disponible immédiatement et prête à rejoindre une équipe à temps plein.</p>
+      <div class="contact-panel">
+        <div>
+          <h2>Parlons du poste.</h2>
+          <p class="lede">Un mail, un appel, ou une visio — comme vous préférez.</p>
+        </div>
+        <div>
+          <ul class="contact-list">
+            <li><span class="lbl">Email</span><a href="mailto:clemence.boulet@free.fr">clemence.boulet@free.fr</a></li>
+            <li><span class="lbl">Téléphone</span><a href="tel:+33617561028">+33 6 17 56 10 28</a></li>
+            <li><span class="lbl">Adresse</span><span style="font-weight:800;">10, square Charles Laurent, 75015 Paris</span></li>
+          </ul>
+          <div class="contact-actions">
+            <a class="btn-dark" href="mailto:clemence.boulet@free.fr">M'écrire un mail</a>
+            <a class="btn-outline" href="CV_Clemence_Boulet.pdf" download>Télécharger mon CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">Clémence Boulet — Portfolio graphiste 2D/3D · Paris, France</div>
+</footer>
+
+<script>
+  var order = ["profil","portfolio","competences","formation","experiences","contact"];
+  var lastTrigger = null;
+
+  // "Retour" system: if this page was reached via a link from another page
+  // (e.g. your personal website), show a back link that returns there,
+  // exactly like a normal page-to-page navigation.
+  (function initSiteBack(){
+    var btn = document.getElementById('siteBack');
+    if(!btn) return;
+    var ref = document.referrer;
+    var cameFromElsewhere = ref && ref.indexOf(window.location.origin) !== 0;
+    if(cameFromElsewhere || (ref && window.location.protocol === 'file:')){
+      btn.classList.add('show');
+    }
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      if(window.history.length > 1){
+        window.history.back();
+      } else if(ref){
+        window.location.href = ref;
+      }
+    });
+  })();
+
+  function showPage(id, trigger){
+    var home = document.getElementById('home');
+    var view = document.getElementById('pageview');
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+    var target = document.getElementById('page-' + id);
+    if(!target) return;
+    home.classList.add('hide');
+    view.classList.add('show');
+    void target.offsetWidth;
+    target.classList.add('active');
+    var idx = order.indexOf(id) + 1;
+    document.getElementById('pageIndex').textContent = 'Carte ' + idx + ' / ' + order.length;
+    document.body.classList.toggle('hide-footer', id === 'portfolio');
+    document.body.classList.toggle('compact-nav', id === 'portfolio');
+    lastTrigger = trigger || null;
+    window.location.hash = id;
+    window.scrollTo(0,0);
+    var h2 = target.querySelector('h2');
+    if(h2){ h2.setAttribute('tabindex','-1'); h2.focus({preventScroll:true}); }
+  }
+
+  function showHome(){
+    document.getElementById('pageview').classList.remove('show');
+    document.body.classList.remove('hide-footer');
+    document.body.classList.remove('compact-nav');
+    var home = document.getElementById('home');
+    home.classList.remove('hide');
+    void home.offsetWidth;
+    history.pushState('', document.title, window.location.pathname + window.location.search);
+    window.scrollTo(0,0);
+    if(lastTrigger){ lastTrigger.focus({preventScroll:true}); }
+    document.querySelectorAll('.deck-card').forEach(function(c){ c.classList.remove('is-flipping'); });
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var flipDelay = reduceMotion ? 0 : 380;
+
+  document.querySelectorAll('.deck-card[data-target]').forEach(function(card){
+    card.addEventListener('click', function(){
+      if(card.classList.contains('is-flipping')) return;
+      card.classList.add('is-flipping');
+      var target = card.getAttribute('data-target');
+      setTimeout(function(){
+        showPage(target, card);
+      }, flipDelay);
+    });
+  });
+
+  document.querySelectorAll('.deck-card.holo').forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.add('is-flipping');
+      setTimeout(function(){ card.classList.remove('is-flipping'); }, reduceMotion ? 0 : 900);
+    });
+  });
+
+  window.addEventListener('popstate', function(){
+    var hash = window.location.hash.replace('#','');
+    if(hash && order.indexOf(hash) !== -1){ showPage(hash); }
+    else{ showHome(); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && document.getElementById('pageview').classList.contains('show')){
+      showHome();
+    }
+  });
+
+  (function init(){
+    var hash = window.location.hash.replace('#','');
+    if(hash && order.indexOf(hash) !== -1){ showPage(hash); }
+  })();
+</script>
+
+</body>
+</html>
